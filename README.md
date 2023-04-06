@@ -1,9 +1,9 @@
-# Parse URL
+# Normal URL
 
 Convenient utility to parse and normalize urls.
 
 ```python
-from parseurl import *
+from normalurl import *
 
 print(parse_url('localhost'))
 print(parse_url('localhost:12345'))
