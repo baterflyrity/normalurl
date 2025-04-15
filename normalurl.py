@@ -1,10 +1,10 @@
 """Convenient utility to parse and normalize urls."""
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 from collections import namedtuple as _namedtuple
 from typing import Union
-from urllib.parse import urlparse as _urlparse, ParseResult
+from urllib.parse import ParseResult, urlparse as _urlparse
 
 URL = _namedtuple('URL', 'scheme hostname port path query fragment netloc username password')
 
@@ -39,10 +39,10 @@ def normalize_url(url: Union[str, URL, ParseResult], *, scheme: str = '', hostna
 		scheme += '://'
 	username = url.username or username
 	password = url.password or password
-	if username and password:
-		credentials = f'{username}:{password}'
+	if username or password:
+		credentials = f'{username}:{password}@'
 	else:
-		credentials = username or password
+		credentials = ''
 	hostname = url.hostname or hostname
 	port = url.port or port
 	if port:
